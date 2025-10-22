@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>БРУТАЛИЗМ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url('https://i.imgur.com/4Y4zJdL.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 4em;
+      text-align: center;
+      margin: 30px 0;
+      letter-spacing: 6px;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #fff, 0 0 30px #ff0; }
+    }
+
+    .subtitle {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      line-height: 1.6;
+      font-size: 1.2em;
+      text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .photo-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #444;
+      max-width: 280px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card p {
+      padding: 12px;
+      font-size: 0.95em;
+      line-height: 1.4;
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 100;
+      border-radius: 4px;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0; right: -250px;
+      width: 250px;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      transition: right 0.4s ease;
+      padding: 60px 20px 20px;
+      z-index: 99;
+      border-left: 2px solid #444;
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      transition: color 0.2s;
+    }
+
+    .sidebar a:hover {
+      color: #fff;
+    }
+
+    .sidebar h3 {
+      color: #eee;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.8em; }
+      .subtitle { font-size: 1em; }
+      .photo-card { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h3>Меню</h3>
+    <a href="#home">Главная</a>
+    <a href="#geo">География</a>
+    <a href="#albums">Альбомы</a>
+    <a href="#contacts">Контакты</a>
+  </div>
+
+  <div class="overlay">
+    <h1>БРУТАЛИЗМ</h1>
+    <p class="subtitle">Мы — команда, собирающая жёсткие, честные фотографии бруталистской архитектуры по всему миру.</p>
+
+    <div class="gallery">
+      <!-- Дом "Этажи" -->
+      <div class="photo-card">
+        <img src="https://i.imgur.com/4Y4zJdL.jpg" alt="Дом Этажи">
+        <p><strong>Дом «Этажи»</strong><br>Минск, Беларусь<br>Обложка альбома «Молчат Дома»</p>
+      </div>
+
+      <!-- Бункер в Софии -->
+      <div class="photo-card">
+        <img src="https://i.imgur.com/3VdDc9r.jpg" alt="Бункер Минобороны">
+        <p><strong>Бункер Минобороны</strong><br>София, Болгария<br>Советский брутализм 1970-х</p>
+      </div>
+
+      <!-- Жилой дом в Москве -->
+      <div class="photo-card">
+        <img src="https://i.imgur.com/8GkF6uP.jpg" alt="Ленинградский проспект">
+        <p><strong>Жилой дом на Ленинградском</strong><br>Москва, Россия<br>Пример «коробки» 1960-х</p>
+      </div>
+
+      <!-- Национальная библиотека в Минске -->
+      <div class="photo-card">
+        <img src="https://i.imgur.com/5JZ1KdR.jpg" alt="Национальная библиотека">
+        <p><strong>Национальная библиотека</strong><br>Минск, Беларусь<br>Символ постсоветского брутализма</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
